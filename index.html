@@ -1,27 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Atelier — Creative Developer</title>
+
   <meta
     name="description"
-    content="Creative developer portfolio — digital experiences, interfaces and thoughtful code."
-  />
+    content="Portfolio of a creative developer working across web design, UI/UX and front-end development."
+  >
 
-  <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
     rel="stylesheet"
   >
 
   <style>
-    /* =========================================================
+
+    /* =====================================================
+       VARIABLES
+    ===================================================== */
+
+    :root {
+      --sage: #2c3e2e;
+      --sage-light: #607263;
+
+      --cream: #f4f1ea;
+      --paper: #ebe7dd;
+      --paper-dark: #ddd8cc;
+
+      --charcoal: #242823;
+      --muted: #73776f;
+
+      --line: rgba(36, 40, 35, 0.15);
+
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+      --mono: "DM Mono", monospace;
+    }
+
+
+    /* =====================================================
        RESET
-    ========================================================= */
+    ===================================================== */
 
     * {
       box-sizing: border-box;
@@ -34,9 +62,9 @@
     }
 
     body {
-      background: #f4f1ea;
-      color: #242823;
-      font-family: "DM Sans", sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      font-family: var(--sans);
       overflow-x: hidden;
     }
 
@@ -50,110 +78,65 @@
       text-decoration: none;
     }
 
-    button {
-      font: inherit;
-    }
 
-
-    /* =========================================================
-       VARIABLES
-    ========================================================= */
-
-    :root {
-      --sage: #2c3e2e;
-      --sage-light: #526553;
-      --sage-pale: #dfe4dc;
-
-      --cream: #f4f1ea;
-      --paper: #ebe7dd;
-      --paper-dark: #ddd8cc;
-
-      --charcoal: #242823;
-      --muted: #72766e;
-      --line: rgba(36, 40, 35, 0.16);
-
-      --serif: "Playfair Display", Georgia, serif;
-      --sans: "DM Sans", Arial, sans-serif;
-      --mono: "DM Mono", monospace;
-    }
-
-
-    /* =========================================================
-       FILM GRAIN
-    ========================================================= */
+    /* =====================================================
+       SUBTLE FILM GRAIN
+    ===================================================== */
 
     body::after {
       content: "";
       position: fixed;
-      inset: -50%;
+      inset: 0;
+
       pointer-events: none;
       z-index: 9999;
-      opacity: 0.055;
+
+      opacity: 0.035;
 
       background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E");
-
-      transform: rotate(2deg);
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.8'/%3E%3C/svg%3E");
     }
 
 
-    /* =========================================================
-       CUSTOM SCROLLBAR
-    ========================================================= */
-
-    ::-webkit-scrollbar {
-      width: 7px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--cream);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--sage);
-      border-radius: 10px;
-    }
-
-
-    /* =========================================================
+    /* =====================================================
        NAVIGATION
-    ========================================================= */
+    ===================================================== */
 
     .nav {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 100;
+
+      padding: 25px 4vw;
 
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
 
-      padding: 24px 4vw;
-
-      mix-blend-mode: multiply;
+      z-index: 20;
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 11px;
 
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: .09em;
       text-transform: uppercase;
     }
 
     .logo-mark {
-      width: 26px;
-      height: 26px;
-      border: 1px solid var(--charcoal);
-      border-radius: 50%;
+      width: 27px;
+      height: 27px;
 
       display: grid;
       place-items: center;
+
+      border: 1px solid var(--charcoal);
+      border-radius: 50%;
 
       font-family: var(--serif);
       font-style: italic;
@@ -162,10 +145,10 @@
 
     .nav-links {
       display: flex;
-      gap: 30px;
+      gap: 28px;
 
-      font-size: 12px;
-      letter-spacing: 0.05em;
+      font-size: 11px;
+      letter-spacing: .08em;
       text-transform: uppercase;
     }
 
@@ -175,13 +158,17 @@
 
     .nav-links a::after {
       content: "";
+
       position: absolute;
       left: 0;
       bottom: -5px;
+
       width: 0;
       height: 1px;
+
       background: var(--sage);
-      transition: width 0.3s ease;
+
+      transition: width .25s ease;
     }
 
     .nav-links a:hover::after {
@@ -189,143 +176,154 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        HERO
-    ========================================================= */
+    ===================================================== */
 
     .hero {
       min-height: 100vh;
-      padding: 150px 4vw 70px;
+
+      padding: 150px 4vw 80px;
 
       display: grid;
       grid-template-columns:
-        minmax(80px, 0.6fr)
-        minmax(280px, 1.8fr)
-        minmax(240px, 1fr);
+        .5fr
+        2fr
+        .9fr;
 
       gap: 5vw;
 
       align-items: end;
-      position: relative;
     }
 
     .hero-index {
       align-self: start;
-      padding-top: 20px;
 
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--muted);
+      padding-top: 25px;
 
       writing-mode: vertical-rl;
       transform: rotate(180deg);
 
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
+      font-family: var(--mono);
+      font-size: 9px;
 
-    .hero-title {
-      max-width: 900px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .1em;
     }
 
     .eyebrow {
       margin-bottom: 25px;
 
       font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-size: 9px;
+
       color: var(--sage-light);
+
+      text-transform: uppercase;
+      letter-spacing: .12em;
     }
 
     h1 {
       font-family: var(--serif);
-      font-size: clamp(70px, 10vw, 160px);
+      font-size: clamp(70px, 10vw, 155px);
+
       font-weight: 400;
-      line-height: 0.82;
-      letter-spacing: -0.055em;
+      line-height: .82;
+
+      letter-spacing: -.065em;
     }
 
     h1 em {
       display: block;
       margin-left: 16%;
-      font-weight: 400;
     }
 
     .hero-description {
-      max-width: 310px;
-      margin-bottom: 7px;
+      max-width: 320px;
+
+      padding-bottom: 5px;
 
       font-size: 14px;
-      line-height: 1.65;
-      color: #555a52;
+      line-height: 1.7;
+
+      color: #60645d;
     }
 
-    .hero-meta {
+    .availability {
       margin-top: 28px;
 
       display: flex;
       align-items: center;
-      gap: 12px;
-
-      font-family: var(--mono);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .status {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #657c65;
-    }
-
-    .scroll-label {
-      position: absolute;
-      bottom: 32px;
-      left: 50%;
-      transform: translateX(-50%);
+      gap: 10px;
 
       font-family: var(--mono);
       font-size: 9px;
-      letter-spacing: 0.15em;
+
       text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .availability-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: #718470;
+    }
+
+    .scroll-note {
+      position: absolute;
+
+      bottom: 28px;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      font-family: var(--mono);
+      font-size: 8px;
+
       color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .15em;
     }
 
 
-    /* =========================================================
+    /* =====================================================
        INTRO
-    ========================================================= */
+    ===================================================== */
 
     .intro {
       padding: 120px 10vw 150px;
 
       display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 10vw;
+      grid-template-columns: .7fr 2fr;
+
+      gap: 8vw;
 
       border-top: 1px solid var(--line);
     }
 
     .section-number {
       font-family: var(--mono);
-      font-size: 10px;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-    }
+      font-size: 9px;
 
-    .intro-copy {
-      max-width: 850px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .1em;
     }
 
     .intro-copy h2 {
+      max-width: 850px;
+
       font-family: var(--serif);
-      font-size: clamp(42px, 5vw, 76px);
-      line-height: 0.98;
+      font-size: clamp(44px, 5.5vw, 78px);
+
       font-weight: 400;
-      letter-spacing: -0.04em;
+      line-height: .98;
+
+      letter-spacing: -.045em;
     }
 
     .intro-copy h2 em {
@@ -333,127 +331,143 @@
     }
 
     .intro-copy p {
-      max-width: 590px;
-      margin-top: 45px;
+      max-width: 600px;
+
+      margin-top: 42px;
+
+      color: #686c64;
 
       font-size: 15px;
       line-height: 1.8;
-      color: #666b63;
     }
 
 
-    /* =========================================================
-       PROJECTS
-    ========================================================= */
+    /* =====================================================
+       WORK
+    ===================================================== */
 
-    .projects {
+    .work {
+      padding: 120px 4vw 150px;
+
       background: var(--sage);
       color: var(--cream);
-
-      padding: 120px 4vw 160px;
     }
 
-    .projects-header {
+    .work-heading {
+      margin-bottom: 100px;
+
       display: flex;
-      justify-content: space-between;
       align-items: flex-end;
-
-      margin-bottom: 110px;
+      justify-content: space-between;
     }
 
-    .projects-header h2 {
+    .work-heading h2 {
       font-family: var(--serif);
-      font-size: clamp(50px, 7vw, 105px);
+      font-size: clamp(55px, 7vw, 105px);
+
       font-weight: 400;
-      line-height: 0.85;
-      letter-spacing: -0.05em;
+      line-height: .85;
+
+      letter-spacing: -.055em;
     }
 
-    .projects-header p {
-      width: 240px;
+    .work-heading p {
+      width: 250px;
+
+      color: rgba(244, 241, 234, .58);
 
       font-size: 12px;
-      line-height: 1.6;
-      color: rgba(244, 241, 234, 0.6);
+      line-height: 1.7;
     }
 
 
-    /* =========================================================
-       PROJECT CARD
-    ========================================================= */
+    /* =====================================================
+       PROJECT
+    ===================================================== */
 
     .project {
       display: grid;
-      grid-template-columns: 1.5fr 0.7fr;
-      gap: 6vw;
+
+      grid-template-columns: 1.55fr .7fr;
+
+      gap: 7vw;
 
       align-items: center;
 
-      margin-bottom: 180px;
+      margin-bottom: 160px;
     }
 
-    .project:nth-child(even) {
-      grid-template-columns: 0.7fr 1.5fr;
+    .project:last-child {
+      margin-bottom: 0;
     }
 
-    .project:nth-child(even) .project-visual {
+    .project.reverse {
+      grid-template-columns: .7fr 1.55fr;
+    }
+
+    .project.reverse .project-preview {
       order: 2;
     }
 
-    .project:nth-child(even) .project-info {
+    .project.reverse .project-info {
       order: 1;
     }
 
 
-    /* =========================================================
-       BROWSER MOCKUP
-    ========================================================= */
+    /* =====================================================
+       BROWSER FRAME
+    ===================================================== */
 
     .browser {
-      background: #f5f2ea;
-
-      border-radius: 5px;
       overflow: hidden;
 
-      box-shadow:
-        0 40px 80px rgba(0, 0, 0, 0.20),
-        0 12px 25px rgba(0, 0, 0, 0.12);
+      background: #e8e4db;
 
-      transform: rotate(-1.2deg);
+      border-radius: 5px;
+
+      box-shadow:
+        0 35px 80px rgba(0,0,0,.22),
+        0 8px 20px rgba(0,0,0,.12);
+
+      transform: rotate(-1deg);
+
       transition:
-        transform 0.7s cubic-bezier(.2,.7,.2,1),
-        box-shadow 0.7s ease;
+        transform .5s ease,
+        box-shadow .5s ease;
     }
 
-    .project:nth-child(even) .browser {
-      transform: rotate(1.2deg);
+    .project.reverse .browser {
+      transform: rotate(1deg);
     }
 
     .browser:hover {
-      transform: rotate(0deg) translateY(-8px);
+      transform: translateY(-7px) rotate(0);
       box-shadow:
-        0 55px 100px rgba(0, 0, 0, 0.27),
-        0 15px 35px rgba(0, 0, 0, 0.15);
+        0 45px 90px rgba(0,0,0,.27),
+        0 10px 25px rgba(0,0,0,.14);
     }
 
     .browser-bar {
       height: 34px;
 
+      padding: 0 12px;
+
       display: flex;
       align-items: center;
-
-      padding: 0 12px;
       gap: 6px;
 
-      background: #e5e1d7;
-      border-bottom: 1px solid #d4d0c5;
+      background: #dedbd1;
+
+      border-bottom: 1px solid #ccc8bd;
     }
 
     .browser-dot {
       width: 7px;
       height: 7px;
+
       border-radius: 50%;
-      background: #a7a69d;
+
+      background: #a5a49d;
     }
 
     .browser-url {
@@ -461,160 +475,94 @@
 
       font-family: var(--mono);
       font-size: 7px;
-      color: #7b7b73;
+
+      color: #73766f;
     }
 
-    .site-preview {
-      min-height: 410px;
-      padding: 35px;
 
-      position: relative;
-      overflow: hidden;
+    /* =====================================================
+       LUGANO OIL LIVE PREVIEW
+    ===================================================== */
 
-      color: var(--charcoal);
-      background: #eeeae0;
-    }
+    .live-site {
+      width: 100%;
+      height: 520px;
 
-    .preview-one {
-      background:
-        linear-gradient(rgba(241,238,229,.92), rgba(241,238,229,.92)),
-        url("data:image/svg+xml,%3Csvg width='120' height='120' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence baseFrequency='.7' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.08'/%3E%3C/svg%3E");
-    }
+      border: 0;
 
-    .preview-nav {
-      display: flex;
-      justify-content: space-between;
-
-      font-size: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    .preview-title {
-      margin-top: 85px;
-
-      font-family: var(--serif);
-      font-size: clamp(38px, 5vw, 68px);
-      line-height: 0.85;
-      letter-spacing: -0.06em;
-    }
-
-    .preview-title span {
       display: block;
-      margin-left: 23%;
-      font-style: italic;
+
+      background: #090e18;
     }
 
-    .preview-caption {
-      position: absolute;
-      bottom: 30px;
-      left: 35px;
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+
+      margin-top: 28px;
 
       font-family: var(--mono);
-      font-size: 7px;
-      color: #72766e;
+      font-size: 9px;
+
       text-transform: uppercase;
+      letter-spacing: .08em;
+
+      border-bottom: 1px solid rgba(244,241,234,.5);
+
+      padding-bottom: 5px;
+
+      transition: opacity .2s ease;
     }
 
-    .preview-image {
-      position: absolute;
-      right: 30px;
-      bottom: 30px;
-
-      width: 31%;
-      height: 38%;
-
-      background:
-        linear-gradient(140deg, #b9c2ae, #687767 50%, #343f35);
-
-      filter: saturate(.7);
-
-      box-shadow: 0 15px 35px rgba(0,0,0,.14);
+    .project-link:hover {
+      opacity: .65;
     }
 
 
-    /* SECOND PROJECT PREVIEW */
-
-    .preview-two {
-      background: #d9d7cc;
-    }
-
-    .architecture {
-      height: 100%;
-
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .architecture-text {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .architecture h3 {
-      font-family: var(--serif);
-      font-size: 48px;
-      font-weight: 400;
-      line-height: .9;
-    }
-
-    .architecture h3 em {
-      display: block;
-      margin-left: 25px;
-    }
-
-    .architecture-image {
-      background:
-        linear-gradient(150deg, #a7aa9c, #4e554b 65%, #272d28);
-      position: relative;
-    }
-
-    .architecture-image::after {
-      content: "";
-      position: absolute;
-      inset: 12% 14% 0 14%;
-
-      border-left: 1px solid rgba(255,255,255,.45);
-      border-right: 1px solid rgba(255,255,255,.25);
-    }
-
-
-    /* =========================================================
-       PROJECT INFO
-    ========================================================= */
+    /* =====================================================
+       PROJECT INFORMATION
+    ===================================================== */
 
     .project-info {
-      max-width: 310px;
+      max-width: 330px;
     }
 
     .project-number {
-      margin-bottom: 25px;
+      margin-bottom: 24px;
 
       font-family: var(--mono);
-      font-size: 10px;
-      color: rgba(244,241,234,.45);
+      font-size: 9px;
+
+      color: rgba(244,241,234,.43);
+
+      text-transform: uppercase;
+      letter-spacing: .08em;
     }
 
     .project-info h3 {
-      font-family: var(--serif);
-      font-size: 42px;
-      line-height: .95;
-      font-weight: 400;
-
       margin-bottom: 24px;
+
+      font-family: var(--serif);
+      font-size: 43px;
+
+      font-weight: 400;
+      line-height: .95;
+
+      letter-spacing: -.035em;
     }
 
     .project-info p {
-      color: rgba(244,241,234,.63);
+      color: rgba(244,241,234,.64);
+
       font-size: 13px;
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
-    .project-tags {
+    .tags {
       display: flex;
       flex-wrap: wrap;
+
       gap: 7px;
 
       margin-top: 25px;
@@ -624,64 +572,157 @@
       padding: 6px 9px;
 
       border: 1px solid rgba(244,241,234,.2);
+
       border-radius: 100px;
 
       font-family: var(--mono);
       font-size: 8px;
+
       text-transform: uppercase;
       letter-spacing: .05em;
     }
 
 
-    /* =========================================================
-       CODE SECTION
-    ========================================================= */
+    /* =====================================================
+       SECOND PROJECT — STATIC EDITORIAL PREVIEW
+    ===================================================== */
 
-    .code-section {
-      padding: 150px 10vw;
+    .editorial-preview {
+      min-height: 470px;
+
+      padding: 35px;
+
+      position: relative;
+
+      background: #e8e3d8;
+
+      color: var(--charcoal);
+    }
+
+    .editorial-top {
+      display: flex;
+      justify-content: space-between;
+
+      font-family: var(--mono);
+      font-size: 8px;
+
+      text-transform: uppercase;
+    }
+
+    .editorial-title {
+      margin-top: 90px;
+
+      font-family: var(--serif);
+      font-size: clamp(48px, 6vw, 78px);
+
+      line-height: .83;
+
+      letter-spacing: -.06em;
+    }
+
+    .editorial-title em {
+      display: block;
+      margin-left: 22%;
+    }
+
+    .editorial-block {
+      position: absolute;
+
+      right: 30px;
+      bottom: 30px;
+
+      width: 30%;
+      height: 36%;
+
+      background:
+        linear-gradient(
+          135deg,
+          #aab1a2,
+          #667267 55%,
+          #343e36
+        );
+
+      box-shadow: 0 18px 35px rgba(0,0,0,.15);
+    }
+
+    .editorial-caption {
+      position: absolute;
+
+      left: 35px;
+      bottom: 30px;
+
+      font-family: var(--mono);
+      font-size: 7px;
+
+      color: #72766e;
+
+      text-transform: uppercase;
+    }
+
+
+    /* =====================================================
+       ABOUT / PROCESS
+    ===================================================== */
+
+    .process {
+      padding: 140px 10vw;
 
       display: grid;
       grid-template-columns: .8fr 1.5fr;
+
       gap: 10vw;
 
       background: #e8e4da;
     }
 
-    .code-intro h2 {
+    .process h2 {
       margin-top: 25px;
 
       font-family: var(--serif);
-      font-size: clamp(45px, 6vw, 82px);
+      font-size: clamp(48px, 6vw, 82px);
+
       font-weight: 400;
       line-height: .9;
+
       letter-spacing: -.05em;
     }
 
-    .code-intro p {
-      max-width: 300px;
+    .process-description {
+      max-width: 600px;
+
       margin-top: 35px;
 
-      font-size: 13px;
-      line-height: 1.7;
       color: var(--muted);
+
+      font-size: 13px;
+      line-height: 1.8;
     }
+
+
+    /* =====================================================
+       CODE
+    ===================================================== */
 
     .code-window {
       overflow: hidden;
 
-      border-radius: 5px;
+      margin-top: 30px;
+
       background: #252b26;
 
-      box-shadow: 0 35px 70px rgba(38, 43, 37, .17);
+      border-radius: 5px;
+
+      box-shadow:
+        0 30px 60px rgba(0,0,0,.15);
     }
 
     .code-header {
       height: 42px;
 
+      padding: 0 15px;
+
       display: flex;
       align-items: center;
-
-      padding: 0 16px;
 
       border-bottom: 1px solid rgba(255,255,255,.08);
     }
@@ -696,21 +737,23 @@
       height: 7px;
 
       border-radius: 50%;
-      background: #656b64;
+
+      background: #626960;
     }
 
-    .code-name {
+    .code-file {
       margin-left: auto;
 
       font-family: var(--mono);
       font-size: 8px;
+
       color: #858d84;
     }
 
     pre {
       overflow-x: auto;
 
-      padding: 30px;
+      padding: 28px;
 
       color: #d5d8ce;
 
@@ -719,84 +762,90 @@
       line-height: 1.9;
     }
 
-    .token-keyword {
-      color: #b7c6a8;
+    .keyword {
+      color: #c1cda9;
     }
 
-    .token-function {
-      color: #d2b993;
+    .string {
+      color: #d0b88f;
     }
 
-    .token-string {
-      color: #aebd9e;
-    }
-
-    .token-comment {
+    .comment {
       color: #70786e;
     }
 
+    .property {
+      color: #aebea8;
+    }
 
-    /* =========================================================
-       SERVICES
-    ========================================================= */
 
-    .services {
+    /* =====================================================
+       SKILLS
+    ===================================================== */
+
+    .skills {
       padding: 130px 4vw;
     }
 
-    .services-top {
+    .skills-heading {
       display: grid;
-      grid-template-columns: 1fr 2fr;
+      grid-template-columns: .7fr 2fr;
 
-      margin-bottom: 100px;
+      margin-bottom: 90px;
     }
 
-    .services-top h2 {
+    .skills-heading h2 {
       font-family: var(--serif);
       font-size: clamp(55px, 7vw, 100px);
+
       font-weight: 400;
       line-height: .85;
-      letter-spacing: -.05em;
+
+      letter-spacing: -.055em;
     }
 
-    .services-list {
+    .skill-list {
       border-top: 1px solid var(--line);
     }
 
-    .service {
+    .skill {
+      min-height: 100px;
+
       display: grid;
       grid-template-columns: 70px 1fr auto;
-      align-items: center;
 
-      min-height: 100px;
+      align-items: center;
 
       border-bottom: 1px solid var(--line);
     }
 
-    .service-number {
+    .skill-number {
       font-family: var(--mono);
       font-size: 9px;
       color: var(--muted);
     }
 
-    .service-name {
+    .skill-name {
       font-family: var(--serif);
       font-size: 30px;
     }
 
-    .service-description {
-      font-size: 11px;
+    .skill-detail {
       color: var(--muted);
+
+      font-family: var(--mono);
+      font-size: 9px;
+
       text-align: right;
     }
 
 
-    /* =========================================================
+    /* =====================================================
        CONTACT
-    ========================================================= */
+    ===================================================== */
 
     .contact {
-      min-height: 85vh;
+      min-height: 80vh;
 
       padding: 120px 4vw;
 
@@ -812,30 +861,36 @@
       justify-content: space-between;
 
       font-family: var(--mono);
-      font-size: 10px;
-      text-transform: uppercase;
+      font-size: 9px;
+
       color: #686c65;
+
+      text-transform: uppercase;
     }
 
     .contact h2 {
       max-width: 1000px;
 
       font-family: var(--serif);
-      font-size: clamp(65px, 11vw, 170px);
+      font-size: clamp(65px, 11vw, 165px);
+
       font-weight: 400;
       line-height: .82;
+
       letter-spacing: -.065em;
     }
 
     .contact h2 em {
+      display: block;
       margin-left: 15%;
+
       color: var(--sage);
     }
 
     .contact-bottom {
       display: flex;
-      justify-content: space-between;
       align-items: flex-end;
+      justify-content: space-between;
     }
 
     .email {
@@ -843,6 +898,7 @@
       font-size: 11px;
 
       border-bottom: 1px solid var(--charcoal);
+
       padding-bottom: 5px;
     }
 
@@ -852,13 +908,14 @@
 
       font-family: var(--mono);
       font-size: 9px;
+
       text-transform: uppercase;
     }
 
 
-    /* =========================================================
+    /* =====================================================
        FOOTER
-    ========================================================= */
+    ===================================================== */
 
     footer {
       padding: 20px 4vw;
@@ -867,26 +924,29 @@
       justify-content: space-between;
 
       background: var(--sage);
+
       color: rgba(244,241,234,.6);
 
       font-family: var(--mono);
       font-size: 8px;
+
       text-transform: uppercase;
       letter-spacing: .08em;
     }
 
 
-    /* =========================================================
-       REVEAL ANIMATION
-    ========================================================= */
+    /* =====================================================
+       SCROLL REVEAL
+    ===================================================== */
 
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
+
+      transform: translateY(24px);
 
       transition:
-        opacity .9s ease,
-        transform .9s cubic-bezier(.2,.7,.2,1);
+        opacity .8s ease,
+        transform .8s ease;
     }
 
     .reveal.visible {
@@ -895,11 +955,78 @@
     }
 
 
-    /* =========================================================
-       RESPONSIVE
-    ========================================================= */
+    /* =====================================================
+       TABLET
+    ===================================================== */
 
     @media (max-width: 900px) {
+
+      .hero {
+        padding: 140px 6vw 100px;
+
+        grid-template-columns: 1fr;
+
+        gap: 60px;
+      }
+
+      .hero-index {
+        writing-mode: initial;
+        transform: none;
+      }
+
+      .intro {
+        padding: 100px 6vw;
+
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+      }
+
+      .work {
+        padding: 100px 6vw;
+      }
+
+      .project,
+      .project.reverse {
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+      }
+
+      .project.reverse .project-preview,
+      .project.reverse .project-info {
+        order: initial;
+      }
+
+      .project-info {
+        max-width: 520px;
+      }
+
+      .process {
+        padding: 100px 6vw;
+
+        grid-template-columns: 1fr;
+
+        gap: 55px;
+      }
+
+      .skills {
+        padding: 100px 6vw;
+      }
+
+      .skills-heading {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+      }
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 600px) {
 
       .nav {
         padding: 20px;
@@ -909,131 +1036,68 @@
         gap: 15px;
       }
 
+      .nav-links a:nth-child(2) {
+        display: none;
+      }
+
       .hero {
-        min-height: auto;
-        padding: 140px 6vw 110px;
-
-        grid-template-columns: 1fr;
-        gap: 60px;
+        padding: 130px 6vw 90px;
       }
 
-      .hero-index {
-        writing-mode: initial;
-        transform: none;
+      h1 {
+        font-size: clamp(62px, 18vw, 100px);
       }
 
-      .hero-description {
-        margin-left: 15%;
+      h1 em {
+        margin-left: 7%;
       }
 
-      .intro {
-        padding: 100px 6vw;
+      .work-heading {
+        display: block;
 
-        grid-template-columns: 1fr;
-        gap: 50px;
+        margin-bottom: 70px;
       }
 
-      .projects {
-        padding: 100px 6vw;
+      .work-heading p {
+        margin-top: 30px;
       }
 
-      .project,
-      .project:nth-child(even) {
-        grid-template-columns: 1fr;
-        gap: 50px;
+      .live-site {
+        height: 420px;
       }
 
-      .project:nth-child(even) .project-visual,
-      .project:nth-child(even) .project-info {
-        order: initial;
+      .browser {
+        transform: none !important;
       }
 
-      .project-info {
-        max-width: 500px;
+      .project-info h3 {
+        font-size: 38px;
       }
 
-      .code-section {
-        padding: 100px 6vw;
-
-        grid-template-columns: 1fr;
-        gap: 60px;
+      .editorial-preview {
+        min-height: 360px;
       }
 
-      .services {
-        padding: 100px 6vw;
+      .skill {
+        grid-template-columns: 42px 1fr;
+
+        padding: 25px 0;
       }
 
-      .services-top {
-        grid-template-columns: 1fr;
-        gap: 50px;
+      .skill-detail {
+        grid-column: 2;
+
+        margin-top: 8px;
+
+        text-align: left;
+      }
+
+      .skill-name {
+        font-size: 24px;
       }
 
       .contact {
         padding: 100px 6vw;
-      }
-    }
-
-
-    @media (max-width: 600px) {
-
-      .nav-links a:nth-child(2),
-      .nav-links a:nth-child(3) {
-        display: none;
-      }
-
-      h1 {
-        font-size: clamp(60px, 18vw, 100px);
-      }
-
-      h1 em {
-        margin-left: 8%;
-      }
-
-      .hero-description {
-        margin-left: 0;
-      }
-
-      .projects-header {
-        display: block;
-      }
-
-      .projects-header p {
-        margin-top: 30px;
-      }
-
-      .site-preview {
-        min-height: 330px;
-        padding: 24px;
-      }
-
-      .preview-title {
-        margin-top: 70px;
-        font-size: 45px;
-      }
-
-      .preview-caption {
-        left: 24px;
-        bottom: 22px;
-      }
-
-      .preview-image {
-        right: 20px;
-        bottom: 22px;
-      }
-
-      .service {
-        grid-template-columns: 40px 1fr;
-        padding: 25px 0;
-      }
-
-      .service-description {
-        grid-column: 2;
-        text-align: left;
-        margin-top: 8px;
-      }
-
-      .service-name {
-        font-size: 24px;
       }
 
       .contact h2 {
@@ -1049,21 +1113,24 @@
       }
 
       footer {
-        gap: 15px;
         flex-direction: column;
+        gap: 12px;
       }
     }
+
   </style>
 </head>
 
 
 <body>
 
-  <!-- =======================================================
-       NAV
-  ======================================================== -->
+
+  <!-- =====================================================
+       NAVIGATION
+  ===================================================== -->
 
   <nav class="nav">
+
     <a href="#" class="logo">
       <span class="logo-mark">A</span>
       Atelier / Dev
@@ -1071,15 +1138,16 @@
 
     <div class="nav-links">
       <a href="#work">Work</a>
-      <a href="#services">Services</a>
+      <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </div>
+
   </nav>
 
 
-  <!-- =======================================================
+  <!-- =====================================================
        HERO
-  ======================================================== -->
+  ===================================================== -->
 
   <header class="hero">
 
@@ -1088,36 +1156,40 @@
     </div>
 
     <div class="hero-title reveal">
+
       <div class="eyebrow">
-        Creative developer · Digital craft
+        Web design · Front-end development
       </div>
 
       <h1>
         Quiet
         <em>interfaces.</em>
       </h1>
+
     </div>
 
     <div class="hero-description reveal">
-      I design and build considered digital experiences for brands,
-      studios and people with something worth saying.
 
-      <div class="hero-meta">
-        <span class="status"></span>
+      I design and build thoughtful websites where
+      visual identity, usability and clean code work together.
+
+      <div class="availability">
+        <span class="availability-dot"></span>
         Available for selected projects
       </div>
+
     </div>
 
-    <div class="scroll-label">
+    <div class="scroll-note">
       ↓ Scroll to explore
     </div>
 
   </header>
 
 
-  <!-- =======================================================
+  <!-- =====================================================
        INTRO
-  ======================================================== -->
+  ===================================================== -->
 
   <section class="intro">
 
@@ -1133,9 +1205,9 @@
       </h2>
 
       <p>
-        I work between design and development, creating websites and
-        digital identities where typography, motion and technology
-        feel like one considered system.
+        I work across interface design and front-end development,
+        creating responsive websites with a focus on typography,
+        hierarchy, usability and visual detail.
       </p>
 
     </div>
@@ -1143,13 +1215,13 @@
   </section>
 
 
-  <!-- =======================================================
-       PROJECTS
-  ======================================================== -->
+  <!-- =====================================================
+       WORK
+  ===================================================== -->
 
-  <section class="projects" id="work">
+  <section class="work" id="work">
 
-    <div class="projects-header">
+    <div class="work-heading">
 
       <h2>
         Selected<br>
@@ -1157,51 +1229,49 @@
       </h2>
 
       <p>
-        A small selection of digital experiences,
-        interfaces and experiments developed
-        over the last few years.
+        A selection of websites and digital experiences
+        designed and developed with HTML, CSS and JavaScript.
       </p>
 
     </div>
 
 
-    <!-- PROJECT 01 -->
+    <!-- ===================================================
+         PROJECT 01 — LUGANO OIL
+    ==================================================== -->
 
     <article class="project reveal">
 
-      <div class="project-visual">
+      <div class="project-preview">
 
         <div class="browser">
 
           <div class="browser-bar">
+
             <span class="browser-dot"></span>
             <span class="browser-dot"></span>
             <span class="browser-dot"></span>
 
             <span class="browser-url">
-              atelier-example.com
+              lugano-oil.github.io/Lugano-Oil/
             </span>
-          </div>
-
-          <div class="site-preview preview-one">
-
-            <div class="preview-nav">
-              <span>Maison No. 04</span>
-              <span>Objects / Studio / Journal</span>
-            </div>
-
-            <div class="preview-title">
-              Form
-              <span>and matter.</span>
-            </div>
-
-            <div class="preview-image"></div>
-
-            <div class="preview-caption">
-              Digital identity / 2026
-            </div>
 
           </div>
+
+          <!--
+            This displays your actual GitHub Pages website
+            inside the portfolio.
+
+            If you prefer a static screenshot later,
+            replace this iframe with an <img>.
+          -->
+
+          <iframe
+            class="live-site"
+            src="https://lugano-oil.github.io/Lugano-Oil/"
+            title="Lugano Oil website preview"
+            loading="lazy"
+          ></iframe>
 
         </div>
 
@@ -1211,74 +1281,81 @@
       <div class="project-info">
 
         <div class="project-number">
-          01 — Identity / Web
+          01 — Web Design / Development
         </div>
 
         <h3>
-          Maison<br>
-          No. 04
+          Lugano<br>
+          Oil
         </h3>
 
         <p>
-          A quiet editorial commerce experience for an
-          independent objects studio, built around tactile
-          materials and slow interaction.
+          A corporate website for Lugano Oil SA,
+          built around a dark navy interface, restrained
+          gold accents and a clear information hierarchy.
         </p>
 
-        <div class="project-tags">
-          <span class="tag">Next.js</span>
-          <span class="tag">Art Direction</span>
-          <span class="tag">WebGL</span>
+        <div class="tags">
+
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Responsive</span>
+
         </div>
+
+        <a
+          class="project-link"
+          href="https://lugano-oil.github.io/Lugano-Oil/"
+          target="_blank"
+          rel="noopener"
+        >
+          View live project ↗
+        </a>
 
       </div>
 
     </article>
 
 
-    <!-- PROJECT 02 -->
+    <!-- ===================================================
+         PROJECT 02
+    ==================================================== -->
 
-    <article class="project reveal">
+    <article class="project reverse reveal">
 
-      <div class="project-visual">
+      <div class="project-preview">
 
         <div class="browser">
 
           <div class="browser-bar">
+
             <span class="browser-dot"></span>
             <span class="browser-dot"></span>
             <span class="browser-dot"></span>
 
             <span class="browser-url">
-              campo-studio.com
+              selected-work / editorial
             </span>
+
           </div>
 
-          <div class="site-preview preview-two">
+          <div class="editorial-preview">
 
-            <div class="architecture">
+            <div class="editorial-top">
+              <span>Studio / 002</span>
+              <span>Digital experience</span>
+            </div>
 
-              <div class="architecture-text">
+            <div class="editorial-title">
+              Form
+              <em>and matter.</em>
+            </div>
 
-                <div>
-                  <div class="preview-nav">
-                    Campo Studio
-                  </div>
+            <div class="editorial-block"></div>
 
-                  <h3>
-                    Spaces
-                    <em>for living.</em>
-                  </h3>
-                </div>
-
-                <span class="preview-caption">
-                  Architecture / Landscape
-                </span>
-
-              </div>
-
-              <div class="architecture-image"></div>
-
+            <div class="editorial-caption">
+              Interface study / 2026
             </div>
 
           </div>
@@ -1291,24 +1368,27 @@
       <div class="project-info">
 
         <div class="project-number">
-          02 — Digital / Direction
+          02 — Interface / Concept
         </div>
 
         <h3>
-          Campo<br>
-          Studio
+          Editorial<br>
+          Interface
         </h3>
 
         <p>
-          A digital home for an architecture practice,
-          balancing large-scale imagery with restrained
-          editorial typography.
+          An experimental responsive interface exploring
+          editorial typography, asymmetric layouts and
+          restrained interaction.
         </p>
 
-        <div class="project-tags">
-          <span class="tag">React</span>
-          <span class="tag">GSAP</span>
-          <span class="tag">CMS</span>
+        <div class="tags">
+
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">UI / UX</span>
+
         </div>
 
       </div>
@@ -1318,13 +1398,13 @@
   </section>
 
 
-  <!-- =======================================================
-       CODE
-  ======================================================== -->
+  <!-- =====================================================
+       PROCESS / CODE
+  ===================================================== -->
 
-  <section class="code-section">
+  <section class="process">
 
-    <div class="code-intro reveal">
+    <div>
 
       <div class="section-number">
         03 / Under the surface
@@ -1335,16 +1415,17 @@
         in code.
       </h2>
 
-      <p>
-        The visual layer is only half of the work.
-        Every project is built with a focus on
-        performance, accessibility and maintainable systems.
+      <p class="process-description">
+        I keep the technology focused and understandable.
+        The goal is not to use a complicated stack for its
+        own sake, but to build websites that are responsive,
+        maintainable and visually considered.
       </p>
 
     </div>
 
 
-    <div class="code-window reveal">
+    <div class="code-window">
 
       <div class="code-header">
 
@@ -1354,44 +1435,46 @@
           <span class="code-dot"></span>
         </div>
 
-        <div class="code-name">
-          experience.tsx
+        <div class="code-file">
+          responsive-layout.css
         </div>
 
       </div>
 
-<pre><code><span class="token-keyword">const</span> experience = {
-  <span class="token-function">design</span>: {
-    typography: <span class="token-string">"editorial"</span>,
-    layout: <span class="token-string">"asymmetric"</span>,
-    motion: <span class="token-string">"intentional"</span>
-  },
+<pre><code><span class="comment">/* A simple responsive layout */</span>
 
-  <span class="token-function">development</span>: {
-    framework: <span class="token-string">"React"</span>,
-    rendering: <span class="token-string">"server-first"</span>,
-    accessibility: <span class="token-keyword">true</span>
-  },
+<span class="keyword">.project</span> {
+  <span class="property">display</span>: grid;
+  <span class="property">grid-template-columns</span>: 1.5fr .7fr;
+  <span class="property">gap</span>: 7vw;
+  <span class="property">align-items</span>: center;
+}
 
-  <span class="token-function">principle</span>: <span class="token-string">
-    "Make technology feel human."
-  </span>
-};
+<span class="keyword">@media</span> (max-width: 900px) {
 
-<span class="token-comment">// build something worth remembering</span></code></pre>
+  <span class="keyword">.project</span> {
+    <span class="property">grid-template-columns</span>: 1fr;
+  }
+
+}
+
+<span class="comment">
+/* Simple technology.
+   Careful design. */
+</span></code></pre>
 
     </div>
 
   </section>
 
 
-  <!-- =======================================================
-       SERVICES
-  ======================================================== -->
+  <!-- =====================================================
+       SKILLS
+  ===================================================== -->
 
-  <section class="services" id="services">
+  <section class="skills" id="skills">
 
-    <div class="services-top">
+    <div class="skills-heading">
 
       <div class="section-number">
         04 / Capabilities
@@ -1405,57 +1488,80 @@
     </div>
 
 
-    <div class="services-list">
+    <div class="skill-list">
 
-      <div class="service reveal">
-        <div class="service-number">01</div>
+      <div class="skill reveal">
 
-        <div class="service-name">
-          Creative Development
+        <div class="skill-number">01</div>
+
+        <div class="skill-name">
+          Web Design
         </div>
 
-        <div class="service-description">
-          React · Next.js · WebGL
+        <div class="skill-detail">
+          Layout · Typography · Visual systems
         </div>
+
       </div>
 
 
-      <div class="service reveal">
-        <div class="service-number">02</div>
+      <div class="skill reveal">
 
-        <div class="service-name">
-          Digital Art Direction
+        <div class="skill-number">02</div>
+
+        <div class="skill-name">
+          UI / UX
         </div>
 
-        <div class="service-description">
-          Visual systems · UI · UX
+        <div class="skill-detail">
+          Interfaces · Hierarchy · Usability
         </div>
+
       </div>
 
 
-      <div class="service reveal">
-        <div class="service-number">03</div>
+      <div class="skill reveal">
 
-        <div class="service-name">
-          Interactive Experiences
+        <div class="skill-number">03</div>
+
+        <div class="skill-name">
+          Front-end Development
         </div>
 
-        <div class="service-description">
-          Motion · 3D · Interaction
+        <div class="skill-detail">
+          HTML · CSS · JavaScript
         </div>
+
       </div>
 
 
-      <div class="service reveal">
-        <div class="service-number">04</div>
+      <div class="skill reveal">
 
-        <div class="service-name">
-          Design Systems
+        <div class="skill-number">04</div>
+
+        <div class="skill-name">
+          Responsive Design
         </div>
 
-        <div class="service-description">
-          Components · Tokens · Code
+        <div class="skill-detail">
+          Desktop · Tablet · Mobile
         </div>
+
+      </div>
+
+
+      <div class="skill reveal">
+
+        <div class="skill-number">05</div>
+
+        <div class="skill-name">
+          Website Optimization
+        </div>
+
+        <div class="skill-detail">
+          Performance · Accessibility · Structure
+        </div>
+
       </div>
 
     </div>
@@ -1463,32 +1569,45 @@
   </section>
 
 
-  <!-- =======================================================
+  <!-- =====================================================
        CONTACT
-  ======================================================== -->
+  ===================================================== -->
 
   <section class="contact" id="contact">
 
     <div class="contact-top">
+
       <span>05 / Contact</span>
-      <span>Barcelona · Europe</span>
+      <span>Available worldwide</span>
+
     </div>
+
 
     <h2 class="reveal">
       Have something
       <em>interesting?</em>
     </h2>
 
+
     <div class="contact-bottom">
 
-      <a class="email" href="mailto:hello@example.com">
+      <a
+        class="email"
+        href="mailto:hello@example.com"
+      >
         hello@example.com
       </a>
 
       <div class="socials">
-        <a href="#" target="_blank">Instagram</a>
-        <a href="#" target="_blank">GitHub</a>
-        <a href="#" target="_blank">LinkedIn</a>
+
+        <a href="#" target="_blank">
+          GitHub
+        </a>
+
+        <a href="#" target="_blank">
+          LinkedIn
+        </a>
+
       </div>
 
     </div>
@@ -1496,86 +1615,66 @@
   </section>
 
 
-  <!-- =======================================================
+  <!-- =====================================================
        FOOTER
-  ======================================================== -->
+  ===================================================== -->
 
   <footer>
-    <span>© 2026 Atelier / Dev</span>
-    <span>Built with intention.</span>
+
+    <span>
+      © 2026 Atelier / Dev
+    </span>
+
+    <span>
+      Built with HTML · CSS · JavaScript
+    </span>
+
   </footer>
 
 
-  <!-- =======================================================
+  <!-- =====================================================
        JAVASCRIPT
-  ======================================================== -->
+  ===================================================== -->
 
   <script>
 
     /*
-     * Scroll reveal
-     */
+      Simple scroll reveal.
 
-    const revealElements = document.querySelectorAll(".reveal");
+      No libraries.
+      No React.
+      No GSAP.
+      No dependencies.
+    */
 
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
+    const revealElements =
+      document.querySelectorAll(".reveal");
 
-        entries.forEach((entry) => {
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
 
-          if (entry.isIntersecting) {
+          entries.forEach((entry) => {
 
-            entry.target.classList.add("visible");
+            if (entry.isIntersecting) {
 
-            revealObserver.unobserve(entry.target);
+              entry.target.classList.add("visible");
 
-          }
+              observer.unobserve(entry.target);
 
-        });
+            }
 
-      },
-      {
-        threshold: 0.12
-      }
-    );
+          });
+
+        },
+        {
+          threshold: 0.12
+        }
+      );
+
 
     revealElements.forEach((element) => {
-      revealObserver.observe(element);
-    });
-
-
-    /*
-     * Slight mouse movement on browser mockups
-     */
-
-    const browsers = document.querySelectorAll(".browser");
-
-    browsers.forEach((browser) => {
-
-      browser.addEventListener("mousemove", (event) => {
-
-        const rect = browser.getBoundingClientRect();
-
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-
-        const rotateX = ((y / rect.height) - 0.5) * -2;
-        const rotateY = ((x / rect.width) - 0.5) * 2;
-
-        browser.style.transform =
-          `perspective(1200px)
-           rotateX(${rotateX}deg)
-           rotateY(${rotateY}deg)
-           translateY(-4px)`;
-
-      });
-
-      browser.addEventListener("mouseleave", () => {
-
-        browser.style.transform = "";
-
-      });
-
+      observer.observe(element);
     });
 
   </script>
